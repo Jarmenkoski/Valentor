@@ -252,7 +252,7 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 2;
     max-width: 520px;
     color: var(--white);
-    margin-left: 0;
+    margin-left: 40px;
 }
 
 .hero-content h1 {
