@@ -770,8 +770,8 @@ img { max-width: 100%; height: auto; display: block; }
     .hero-text h1 { font-size: 1.6rem; }
 
     .buy-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
     }
 
     .steps-row { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -788,7 +788,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 480px) {
-    .buy-row { grid-template-columns: repeat(2, 1fr); }
+    .buy-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .steps-row { grid-template-columns: 1fr; }
     .hero-text h1 { font-size: 1.4rem; }
     .form-card { padding: 24px 20px; }
