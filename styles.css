@@ -711,6 +711,39 @@ img { max-width: 100%; height: auto; display: block; }
     opacity: 0.6;
 }
 
+/* === SCROLL TO TOP === */
+.scroll-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(9, 29, 62, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: var(--transition);
+    z-index: 90;
+    border: 2px solid rgba(255,255,255,0.15);
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: var(--navy);
+    transform: translateY(-3px);
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
     .buy-row { gap: 20px; }

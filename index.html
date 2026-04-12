@@ -243,21 +243,33 @@
         </div>
     </footer>
 
+    <!-- Mene ylös -painike -->
+    <a href="#top" class="scroll-top" id="scrollTop" aria-label="Mene ylös">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </a>
+
     <script>
     (function() {
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(a) {
             a.addEventListener('click', function(e) {
                 e.preventDefault();
-                var t = document.querySelector(this.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var href = this.getAttribute('href');
+                if (href === '#top' || href === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    var t = document.querySelector(href);
+                    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
 
-        // Header scroll
+        // Header scroll + scroll-top button
         var header = document.querySelector('.header');
+        var scrollBtn = document.getElementById('scrollTop');
         window.addEventListener('scroll', function() {
             header.classList.toggle('scrolled', window.scrollY > 60);
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
         });
 
         // Mobile nav
