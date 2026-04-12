@@ -208,60 +208,59 @@ img { max-width: 100%; height: auto; display: block; }
 /* === HERO === */
 .hero {
     position: relative;
-    min-height: 640px;
+    min-height: 600px;
     display: flex;
     align-items: center;
     padding: 130px 0 100px;
     overflow: hidden;
+    background: var(--navy);
 }
 
-.hero-bg {
+.hero-bg-image {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(160deg, var(--navy) 0%, var(--blue-dark) 30%, var(--blue) 60%, var(--blue-mid) 100%);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
     z-index: 0;
 }
 
-.hero-stripes {
+.hero-overlay {
     position: absolute;
     inset: 0;
+    z-index: 1;
+    /* Gradient from left (solid blue) to right (transparent, showing image) */
     background:
-        repeating-linear-gradient(
-            125deg,
-            transparent,
-            transparent 80px,
-            rgba(255,255,255,0.02) 80px,
-            rgba(255,255,255,0.02) 82px
+        linear-gradient(to right,
+            var(--navy) 0%,
+            var(--navy) 25%,
+            rgba(9, 29, 62, 0.85) 45%,
+            rgba(9, 29, 62, 0.5) 65%,
+            rgba(9, 29, 62, 0.25) 80%,
+            rgba(9, 29, 62, 0.15) 100%
+        ),
+        linear-gradient(to bottom,
+            rgba(9, 29, 62, 0.3) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(9, 29, 62, 0.6) 100%
         );
 }
 
-.hero-bg::after {
-    content: '';
-    position: absolute;
-    top: -30%; right: -10%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-}
-
-.hero-grid {
+.hero-content {
     position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 56px;
-    align-items: center;
+    z-index: 2;
+    max-width: 550px;
+    color: var(--white);
 }
 
-.hero-text { color: var(--white); }
-
-.hero-text h1 {
+.hero-content h1 {
     font-size: clamp(1.7rem, 4vw, 2.7rem);
     font-weight: 900;
     line-height: 1.15;
     margin-bottom: 28px;
     letter-spacing: -0.02em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
 .hero-checklist {
@@ -308,24 +307,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-phone a:hover { text-decoration-color: var(--gold); }
 
-.hero-visual {
-    position: relative;
-}
-
-.hero-img {
-    width: 100%;
-    height: auto;
-    max-height: 440px;
-    object-fit: contain;
-    display: block;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 75%, transparent 100%),
-                        linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 75%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%);
-    mask-composite: intersect;
-    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
-}
 
 
 .hero-wave {
@@ -760,14 +741,18 @@ img { max-width: 100%; height: auto; display: block; }
         min-height: auto;
     }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+    .hero { min-height: 500px; padding: 110px 0 80px; }
+    .hero-bg-image { background-position: center; }
+    .hero-overlay {
+        background:
+            linear-gradient(to bottom,
+                var(--navy) 0%,
+                rgba(9, 29, 62, 0.8) 30%,
+                rgba(9, 29, 62, 0.6) 60%,
+                var(--navy) 100%
+            );
     }
-
-    .hero-visual { order: -1; }
-    .hero-img { max-height: 280px; }
-    .hero-text h1 { font-size: 1.6rem; }
+    .hero-content h1 { font-size: 1.6rem; }
 
     .buy-row {
         grid-template-columns: repeat(3, 1fr);
@@ -790,9 +775,9 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 480px) {
     .buy-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .steps-row { grid-template-columns: 1fr; }
-    .hero-text h1 { font-size: 1.4rem; }
+    .hero-content h1 { font-size: 1.4rem; }
     .form-card { padding: 24px 20px; }
-    .hero-img { max-height: 200px; }
+    .hero-content h1 { font-size: 1.3rem; }
     .step-card { padding: 28px 18px 22px; }
 }
 
