@@ -250,8 +250,9 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 550px;
+    max-width: 520px;
     color: var(--white);
+    margin-left: -20px;
 }
 
 .hero-content h1 {
