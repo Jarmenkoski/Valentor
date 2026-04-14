@@ -867,7 +867,21 @@ img { max-width: 100%; height: auto; display: block; }
     .buy-row {
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
+        max-width: 100%;
     }
+    .buy-item {
+        width: auto;
+        min-width: 0;
+        padding: 18px 8px 16px;
+    }
+    .buy-img-wrap { height: 100px; }
+    .buy-img-wrap img { max-height: 90px; }
+    .buy-item span { font-size: 0.78rem; }
+
+    .logo-main { font-size: 1.05rem; }
+    .logo-sub { font-size: 0.6rem; }
+    .header-inner { gap: 8px; }
+    .logo { min-width: 0; flex-shrink: 1; }
 
     .steps-row { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
@@ -883,12 +897,22 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 480px) {
-    .buy-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .container { padding: 0 14px; }
+    .buy-row { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .buy-item { padding: 14px 4px 12px; }
+    .buy-img-wrap { height: 80px; }
+    .buy-img-wrap img { max-height: 72px; }
+    .buy-item span { font-size: 0.7rem; }
     .steps-row { grid-template-columns: 1fr; }
-    .hero-content h1 { font-size: 1.4rem; }
-    .form-card { padding: 24px 20px; }
     .hero-content h1 { font-size: 1.3rem; }
+    .form-card { padding: 24px 20px; }
     .step-card { padding: 28px 18px 22px; }
+
+    .logo-main { font-size: 0.92rem; }
+    .logo-sub { font-size: 0.55rem; }
+    .lang-switch { padding: 2px; margin-left: auto; margin-right: 8px; gap: 2px; }
+    .lang-switch button { padding: 3px 6px; font-size: 0.65rem; min-width: 24px; }
+    .nav-toggle span { width: 22px; }
 }
 
 /* === SCROLL REVEAL INIT STATE === */
