@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentor Group Oy – Ostamme ajoneuvoja koko Suomessa</title>
-    <meta name="description" content="Valentor Group Oy ostaa ajoneuvoja nopeasti koko Suomessa. Kolaroidut, vialliset, katsastamattomat autot – maksu heti, oma kuljetus.">
+    <title data-i18n="meta.title">Valentor Group Oy – Ostamme ajoneuvoja koko Suomessa</title>
+    <meta name="description" content="Valentor Group Oy ostaa ajoneuvoja nopeasti koko Suomessa. Kolaroidut, vialliset, katsastamattomat autot – maksu heti, oma kuljetus." data-i18n-attr="content:meta.description">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,15 +17,20 @@
         <div class="container header-inner">
             <a href="#top" class="logo">
                 <span class="logo-main">VALENTOR GROUP OY</span>
-                <span class="logo-sub">Ajoneuvojen osto ja myynti</span>
+                <span class="logo-sub" data-i18n="logo.sub">Ajoneuvojen osto ja myynti</span>
             </a>
             <nav class="nav" id="nav">
-                <a href="#top">Etusivu</a>
-                <a href="#mita-ostamme">Mitä ostamme</a>
-                <a href="#nain-toimii">Näin toimii</a>
-                <a href="#yhteystiedot">Ota yhteyttä</a>
+                <a href="#top" data-i18n="nav.home">Etusivu</a>
+                <a href="#mita-ostamme" data-i18n="nav.buy">Mitä ostamme</a>
+                <a href="#nain-toimii" data-i18n="nav.how">Näin toimii</a>
+                <a href="#yhteystiedot" data-i18n="nav.contact">Ota yhteyttä</a>
             </nav>
-            <button class="nav-toggle" id="navToggle" aria-label="Avaa valikko">
+            <div class="lang-switch" id="langSwitch" role="group" aria-label="Language">
+                <button type="button" data-lang="fi" class="active">FI</button>
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="sv">SV</button>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Avaa valikko" data-i18n-attr="aria-label:nav.openMenu">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -36,35 +41,35 @@
         <div class="hero-bg-image" style="background-image: url('images/hero.jpg')"></div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>Ostamme ajoneuvot<br>nopeasti koko Suomessa</h1>
+            <h1 data-i18n-html="hero.title">Ostamme ajoneuvot<br>nopeasti koko Suomessa</h1>
             <ul class="hero-checklist">
                 <li>
                     <span class="check-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    Kolaroidut autot
+                    <span data-i18n="hero.list.crashed">Kolaroidut autot</span>
                 </li>
                 <li>
                     <span class="check-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    Teknisesti vialliset
+                    <span data-i18n="hero.list.faulty">Teknisesti vialliset</span>
                 </li>
                 <li>
                     <span class="check-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    Katsastamattomat
+                    <span data-i18n="hero.list.uninspected">Katsastamattomat</span>
                 </li>
                 <li>
                     <span class="check-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    Seisoneet autot
+                    <span data-i18n="hero.list.stood">Seisoneet autot</span>
                 </li>
                 <li>
                     <span class="check-box"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    Pakettiautot ja henkilöautot
+                    <span data-i18n="hero.list.vans">Pakettiautot ja henkilöautot</span>
                 </li>
             </ul>
             <div class="hero-actions">
-                <a href="#yhteystiedot" class="btn btn-cta">Pyydä tarjous nyt</a>
+                <a href="#yhteystiedot" class="btn btn-cta" data-i18n="hero.cta">Pyydä tarjous nyt</a>
             </div>
             <div class="hero-phone">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                <span>Soita: <a href="tel:+358413134516">+358 41 313 4516</a></span>
+                <span><span data-i18n="hero.callLabel">Soita</span>: <a href="tel:+358413134516">+358 41 313 4516</a></span>
             </div>
         </div>
         <div class="hero-wave">
@@ -77,43 +82,31 @@
     <!-- Mitä ostamme -->
     <section class="section-buy" id="mita-ostamme">
         <div class="container">
-            <h2 class="section-title">Mitä ostamme</h2>
+            <h2 class="section-title" data-i18n="buy.title">Mitä ostamme</h2>
             <div class="buy-row">
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/kolari.png" alt="Kolariautot">
-                    </div>
-                    <span>Kolaroidut autot</span>
+                    <div class="buy-img-wrap"><img src="images/kolari.png" alt="" data-i18n-attr="alt:buy.crashed"></div>
+                    <span data-i18n="buy.crashed">Kolaroidut autot</span>
                 </div>
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/moottori.png" alt="Moottorivikaiset autot">
-                    </div>
-                    <span>Moottorivikaiset autot</span>
+                    <div class="buy-img-wrap"><img src="images/moottori.png" alt="" data-i18n-attr="alt:buy.engine"></div>
+                    <span data-i18n="buy.engine">Moottorivikaiset autot</span>
                 </div>
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/katsastus.png" alt="Katsastamattomat autot">
-                    </div>
-                    <span>Katsastamattomat autot</span>
+                    <div class="buy-img-wrap"><img src="images/katsastus.png" alt="" data-i18n-attr="alt:buy.uninspected"></div>
+                    <span data-i18n="buy.uninspected">Katsastamattomat autot</span>
                 </div>
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/seisonut.png" alt="Seisoneet ajoneuvot">
-                    </div>
-                    <span>Seisoneet ajoneuvot</span>
+                    <div class="buy-img-wrap"><img src="images/seisonut.png" alt="" data-i18n-attr="alt:buy.stood"></div>
+                    <span data-i18n="buy.stood">Seisoneet ajoneuvot</span>
                 </div>
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/projekti.png" alt="Projektiautot">
-                    </div>
-                    <span>Projektiautot</span>
+                    <div class="buy-img-wrap"><img src="images/projekti.png" alt="" data-i18n-attr="alt:buy.project"></div>
+                    <span data-i18n="buy.project">Projektiautot</span>
                 </div>
                 <div class="buy-item">
-                    <div class="buy-img-wrap">
-                        <img src="images/pakettiauto.png" alt="Pakettiautot">
-                    </div>
-                    <span>Pakettiautot</span>
+                    <div class="buy-img-wrap"><img src="images/pakettiauto.png" alt="" data-i18n-attr="alt:buy.vans"></div>
+                    <span data-i18n="buy.vans">Pakettiautot</span>
                 </div>
             </div>
         </div>
@@ -127,42 +120,42 @@
             </svg>
         </div>
         <div class="container">
-            <h2 class="section-title section-title--light">Näin myynti toimii</h2>
+            <h2 class="section-title section-title--light" data-i18n="steps.title">Näin myynti toimii</h2>
             <div class="steps-row">
                 <div class="step-card">
                     <div class="step-badge">1.</div>
-                    <h3>Lähetä tiedot</h3>
+                    <h3 data-i18n="steps.s1.title">Lähetä tiedot</h3>
                     <div class="step-divider"></div>
                     <ul class="step-details">
-                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> Merkki, malli,</li>
-                        <li>kunto, sijainti</li>
+                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-i18n="steps.s1.l1">Merkki, malli,</span></li>
+                        <li data-i18n="steps.s1.l2">kunto, sijainti</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <div class="step-badge">2.</div>
-                    <h3>Saat tarjouksen</h3>
+                    <h3 data-i18n="steps.s2.title">Saat tarjouksen</h3>
                     <div class="step-divider"></div>
                     <ul class="step-details">
-                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> Nopea ja reilu</li>
-                        <li>tarjous</li>
+                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-i18n="steps.s2.l1">Nopea ja reilu</span></li>
+                        <li data-i18n="steps.s2.l2">tarjous</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <div class="step-badge">3.</div>
-                    <h3>Noudamme auton</h3>
+                    <h3 data-i18n="steps.s3.title">Noudamme auton</h3>
                     <div class="step-divider"></div>
                     <ul class="step-details">
-                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> Kuljetus koko</li>
-                        <li>Suomessa</li>
+                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-i18n="steps.s3.l1">Kuljetus koko</span></li>
+                        <li data-i18n="steps.s3.l2">Suomessa</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <div class="step-badge">4.</div>
-                    <h3>Maksu heti</h3>
+                    <h3 data-i18n="steps.s4.title">Maksu heti</h3>
                     <div class="step-divider"></div>
                     <ul class="step-details">
-                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> Tilisiirto tai</li>
-                        <li>käteinen</li>
+                        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4L14 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-i18n="steps.s4.l1">Tilisiirto tai</span></li>
+                        <li data-i18n="steps.s4.l2">käteinen</li>
                     </ul>
                 </div>
             </div>
@@ -179,7 +172,7 @@
         <div class="container">
             <div class="contact-layout">
                 <div class="contact-left">
-                    <h2 class="section-title section-title--left">Ota yhteyttä</h2>
+                    <h2 class="section-title section-title--left" data-i18n="contact.title">Ota yhteyttä</h2>
                     <div class="contact-card">
                         <div class="contact-row">
                             <div class="contact-icon">
@@ -187,7 +180,7 @@
                             </div>
                             <div>
                                 <strong>Valentor Group Oy</strong>
-                                <p>Soita: <a href="tel:+358413134516">+358 41 313 4516</a></p>
+                                <p><span data-i18n="contact.callLabel">Soita</span>: <a href="tel:+358413134516">+358 41 313 4516</a></p>
                             </div>
                         </div>
                         <div class="contact-row">
@@ -195,34 +188,34 @@
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d3b7a" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             </div>
                             <div>
-                                <p>Sähköposti:<br><a href="mailto:info@valentor.fi">info@valentor.fi</a></p>
+                                <p><span data-i18n="contact.emailLabel">Sähköposti</span>:<br><a href="mailto:info@valentor.fi">info@valentor.fi</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="contact-right">
                     <div class="form-card">
-                        <h3>Lähetä tiedot:</h3>
+                        <h3 data-i18n="form.title">Lähetä tiedot:</h3>
                         <form class="form" id="contactForm" action="https://formsubmit.co/info@valentor.fi" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_subject" value="Uusi yhteydenotto – valentor.fi">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="https://valentor.fi/?sent=1">
                             <input type="hidden" name="_template" value="table">
-                            <input type="text" name="name" placeholder="Nimi" required>
-                            <input type="tel" name="phone" placeholder="Puhelin" required>
-                            <input type="email" name="email" placeholder="Sähköposti">
-                            <input type="text" name="location" placeholder="Sijainti">
-                            <input type="text" name="car" placeholder="Auton Merkki &amp; Malli" required>
-                            <input type="text" name="year" placeholder="Vuosimalli">
-                            <input type="text" name="condition" placeholder="Viat / Kunto">
-                            <textarea name="details" rows="3" placeholder="Lisätiedot, vapaa hintanäkemys..."></textarea>
+                            <input type="text" name="name" placeholder="Nimi" required data-i18n-attr="placeholder:form.name">
+                            <input type="tel" name="phone" placeholder="Puhelin" required data-i18n-attr="placeholder:form.phone">
+                            <input type="email" name="email" placeholder="Sähköposti" data-i18n-attr="placeholder:form.email">
+                            <input type="text" name="location" placeholder="Sijainti" data-i18n-attr="placeholder:form.location">
+                            <input type="text" name="car" placeholder="Auton Merkki &amp; Malli" required data-i18n-attr="placeholder:form.car">
+                            <input type="text" name="year" placeholder="Vuosimalli" data-i18n-attr="placeholder:form.year">
+                            <input type="text" name="condition" placeholder="Viat / Kunto" data-i18n-attr="placeholder:form.condition">
+                            <textarea name="details" rows="3" placeholder="Lisätiedot, vapaa hintanäkemys..." data-i18n-attr="placeholder:form.details"></textarea>
                             <label class="file-label" for="photos">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                                <span id="fileLabelText">Lisää kuvia ajoneuvosta (max 3)</span>
+                                <span id="fileLabelText" data-i18n="form.addPhotos">Lisää kuvia ajoneuvosta (max 3)</span>
                             </label>
                             <input type="file" id="photos" name="attachment" accept="image/*" multiple hidden>
                             <p class="file-status" id="fileStatus" aria-live="polite"></p>
-                            <button type="submit" class="btn btn-submit" id="submitBtn">Lähetä</button>
+                            <button type="submit" class="btn btn-submit" id="submitBtn" data-i18n="form.send">Lähetä</button>
                         </form>
                     </div>
                 </div>
@@ -233,29 +226,182 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
-            <p class="footer-tagline">Luotettavaa ja nopeaa auton ostoa koko Suomessa.</p>
+            <p class="footer-tagline" data-i18n="footer.tagline">Luotettavaa ja nopeaa auton ostoa koko Suomessa.</p>
             <div class="footer-social">
                 <a href="#" aria-label="Facebook" class="social-btn">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                 </a>
-                <a href="tel:+358413134516" aria-label="Soita" class="social-btn">
+                <a href="tel:+358413134516" aria-label="Soita" class="social-btn" data-i18n-attr="aria-label:footer.call">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                 </a>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2026 Valentor Group Oy. Kaikki oikeudet pidätetään.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 Valentor Group Oy. Kaikki oikeudet pidätetään.</p>
             </div>
         </div>
     </footer>
 
     <!-- Mene ylös -painike -->
-    <a href="#top" class="scroll-top" id="scrollTop" aria-label="Mene ylös">
+    <a href="#top" class="scroll-top" id="scrollTop" aria-label="Mene ylös" data-i18n-attr="aria-label:scrollTop">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </a>
 
     <script>
+    // === i18n ===
+    var TRANSLATIONS = {
+        fi: {
+            'meta.title': 'Valentor Group Oy – Ostamme ajoneuvoja koko Suomessa',
+            'meta.description': 'Valentor Group Oy ostaa ajoneuvoja nopeasti koko Suomessa. Kolaroidut, vialliset, katsastamattomat autot – maksu heti, oma kuljetus.',
+            'logo.sub': 'Ajoneuvojen osto ja myynti',
+            'nav.home': 'Etusivu', 'nav.buy': 'Mitä ostamme', 'nav.how': 'Näin toimii', 'nav.contact': 'Ota yhteyttä',
+            'nav.openMenu': 'Avaa valikko',
+            'hero.title': 'Ostamme ajoneuvot<br>nopeasti koko Suomessa',
+            'hero.list.crashed': 'Kolaroidut autot', 'hero.list.faulty': 'Teknisesti vialliset',
+            'hero.list.uninspected': 'Katsastamattomat', 'hero.list.stood': 'Seisoneet autot',
+            'hero.list.vans': 'Pakettiautot ja henkilöautot',
+            'hero.cta': 'Pyydä tarjous nyt', 'hero.callLabel': 'Soita',
+            'buy.title': 'Mitä ostamme',
+            'buy.crashed': 'Kolaroidut autot', 'buy.engine': 'Moottorivikaiset autot',
+            'buy.uninspected': 'Katsastamattomat autot', 'buy.stood': 'Seisoneet ajoneuvot',
+            'buy.project': 'Projektiautot', 'buy.vans': 'Pakettiautot',
+            'steps.title': 'Näin myynti toimii',
+            'steps.s1.title': 'Lähetä tiedot', 'steps.s1.l1': 'Merkki, malli,', 'steps.s1.l2': 'kunto, sijainti',
+            'steps.s2.title': 'Saat tarjouksen', 'steps.s2.l1': 'Nopea ja reilu', 'steps.s2.l2': 'tarjous',
+            'steps.s3.title': 'Noudamme auton', 'steps.s3.l1': 'Kuljetus koko', 'steps.s3.l2': 'Suomessa',
+            'steps.s4.title': 'Maksu heti', 'steps.s4.l1': 'Tilisiirto tai', 'steps.s4.l2': 'käteinen',
+            'contact.title': 'Ota yhteyttä', 'contact.callLabel': 'Soita', 'contact.emailLabel': 'Sähköposti',
+            'form.title': 'Lähetä tiedot:',
+            'form.name': 'Nimi', 'form.phone': 'Puhelin', 'form.email': 'Sähköposti', 'form.location': 'Sijainti',
+            'form.car': 'Auton merkki & malli', 'form.year': 'Vuosimalli', 'form.condition': 'Viat / Kunto',
+            'form.details': 'Lisätiedot, vapaa hintanäkemys...',
+            'form.addPhotos': 'Lisää kuvia ajoneuvosta (max 3)',
+            'form.send': 'Lähetä', 'form.sending': 'Lähetetään...',
+            'form.compressing': 'Pakataan kuvia...',
+            'form.ready': 'Valmiina lähetettäväksi',
+            'form.totalSuffix': 'KB yhteensä',
+            'form.photoOne': 'kuva valittu', 'form.photoMany': 'kuvaa valittu',
+            'form.thanksTitle': 'Kiitos yhteydenotostasi!', 'form.thanksBody': 'Olemme sinuun yhteydessä pian.',
+            'footer.tagline': 'Luotettavaa ja nopeaa auton ostoa koko Suomessa.',
+            'footer.call': 'Soita',
+            'footer.copyright': '© 2026 Valentor Group Oy. Kaikki oikeudet pidätetään.',
+            'scrollTop': 'Mene ylös'
+        },
+        en: {
+            'meta.title': 'Valentor Group Oy – We buy vehicles across Finland',
+            'meta.description': 'Valentor Group Oy buys vehicles quickly across Finland. Crashed, faulty, uninspected cars – instant payment, our own transport.',
+            'logo.sub': 'Vehicle buying and selling',
+            'nav.home': 'Home', 'nav.buy': 'What we buy', 'nav.how': 'How it works', 'nav.contact': 'Contact',
+            'nav.openMenu': 'Open menu',
+            'hero.title': 'We buy vehicles<br>quickly across Finland',
+            'hero.list.crashed': 'Crashed cars', 'hero.list.faulty': 'Technically faulty',
+            'hero.list.uninspected': 'Uninspected', 'hero.list.stood': 'Long-stood cars',
+            'hero.list.vans': 'Vans and passenger cars',
+            'hero.cta': 'Request an offer now', 'hero.callLabel': 'Call',
+            'buy.title': 'What we buy',
+            'buy.crashed': 'Crashed cars', 'buy.engine': 'Cars with engine faults',
+            'buy.uninspected': 'Uninspected cars', 'buy.stood': 'Long-stood vehicles',
+            'buy.project': 'Project cars', 'buy.vans': 'Vans',
+            'steps.title': 'How the sale works',
+            'steps.s1.title': 'Send details', 'steps.s1.l1': 'Make, model,', 'steps.s1.l2': 'condition, location',
+            'steps.s2.title': 'Get an offer', 'steps.s2.l1': 'Fast and fair', 'steps.s2.l2': 'offer',
+            'steps.s3.title': 'We pick up the car', 'steps.s3.l1': 'Transport across', 'steps.s3.l2': 'Finland',
+            'steps.s4.title': 'Instant payment', 'steps.s4.l1': 'Bank transfer', 'steps.s4.l2': 'or cash',
+            'contact.title': 'Contact us', 'contact.callLabel': 'Call', 'contact.emailLabel': 'Email',
+            'form.title': 'Send details:',
+            'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.location': 'Location',
+            'form.car': 'Car make & model', 'form.year': 'Model year', 'form.condition': 'Faults / Condition',
+            'form.details': 'Additional info, your price estimate...',
+            'form.addPhotos': 'Add photos of the vehicle (max 3)',
+            'form.send': 'Send', 'form.sending': 'Sending...',
+            'form.compressing': 'Compressing images...',
+            'form.ready': 'Ready to send',
+            'form.totalSuffix': 'KB total',
+            'form.photoOne': 'photo selected', 'form.photoMany': 'photos selected',
+            'form.thanksTitle': 'Thank you for your message!', 'form.thanksBody': 'We will be in touch shortly.',
+            'footer.tagline': 'Reliable and fast car buying across Finland.',
+            'footer.call': 'Call',
+            'footer.copyright': '© 2026 Valentor Group Oy. All rights reserved.',
+            'scrollTop': 'Back to top'
+        },
+        sv: {
+            'meta.title': 'Valentor Group Oy – Vi köper fordon i hela Finland',
+            'meta.description': 'Valentor Group Oy köper fordon snabbt i hela Finland. Krockade, defekta, obesiktigade bilar – betalning direkt, egen transport.',
+            'logo.sub': 'Köp och försäljning av fordon',
+            'nav.home': 'Hem', 'nav.buy': 'Vad vi köper', 'nav.how': 'Så fungerar det', 'nav.contact': 'Kontakt',
+            'nav.openMenu': 'Öppna meny',
+            'hero.title': 'Vi köper fordon<br>snabbt i hela Finland',
+            'hero.list.crashed': 'Krockade bilar', 'hero.list.faulty': 'Tekniskt defekta',
+            'hero.list.uninspected': 'Obesiktigade', 'hero.list.stood': 'Långt stillastående bilar',
+            'hero.list.vans': 'Paketbilar och personbilar',
+            'hero.cta': 'Begär offert nu', 'hero.callLabel': 'Ring',
+            'buy.title': 'Vad vi köper',
+            'buy.crashed': 'Krockade bilar', 'buy.engine': 'Bilar med motorfel',
+            'buy.uninspected': 'Obesiktigade bilar', 'buy.stood': 'Stillastående fordon',
+            'buy.project': 'Projektbilar', 'buy.vans': 'Paketbilar',
+            'steps.title': 'Så går försäljningen till',
+            'steps.s1.title': 'Skicka uppgifter', 'steps.s1.l1': 'Märke, modell,', 'steps.s1.l2': 'skick, plats',
+            'steps.s2.title': 'Få en offert', 'steps.s2.l1': 'Snabbt och rättvist', 'steps.s2.l2': 'erbjudande',
+            'steps.s3.title': 'Vi hämtar bilen', 'steps.s3.l1': 'Transport i hela', 'steps.s3.l2': 'Finland',
+            'steps.s4.title': 'Betalning direkt', 'steps.s4.l1': 'Banköverföring', 'steps.s4.l2': 'eller kontant',
+            'contact.title': 'Kontakta oss', 'contact.callLabel': 'Ring', 'contact.emailLabel': 'E-post',
+            'form.title': 'Skicka uppgifter:',
+            'form.name': 'Namn', 'form.phone': 'Telefon', 'form.email': 'E-post', 'form.location': 'Plats',
+            'form.car': 'Bilmärke & modell', 'form.year': 'Årsmodell', 'form.condition': 'Fel / Skick',
+            'form.details': 'Mer information, ditt prisförslag...',
+            'form.addPhotos': 'Lägg till bilder av fordonet (max 3)',
+            'form.send': 'Skicka', 'form.sending': 'Skickar...',
+            'form.compressing': 'Komprimerar bilder...',
+            'form.ready': 'Klart att skicka',
+            'form.totalSuffix': 'KB totalt',
+            'form.photoOne': 'bild vald', 'form.photoMany': 'bilder valda',
+            'form.thanksTitle': 'Tack för ditt meddelande!', 'form.thanksBody': 'Vi hör av oss inom kort.',
+            'footer.tagline': 'Pålitligt och snabbt bilköp i hela Finland.',
+            'footer.call': 'Ring',
+            'footer.copyright': '© 2026 Valentor Group Oy. Alla rättigheter förbehållna.',
+            'scrollTop': 'Till toppen'
+        }
+    };
+
+    var currentLang = (function() {
+        var saved = localStorage.getItem('valentor-lang');
+        if (saved && TRANSLATIONS[saved]) return saved;
+        return 'fi';
+    })();
+
+    function t(key) {
+        return (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key]) || TRANSLATIONS.fi[key] || key;
+    }
+
+    function applyLang(lang) {
+        if (!TRANSLATIONS[lang]) lang = 'fi';
+        currentLang = lang;
+        localStorage.setItem('valentor-lang', lang);
+        document.documentElement.lang = lang;
+
+        // text content
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            el.textContent = t(el.getAttribute('data-i18n'));
+        });
+        // HTML content (for <br>)
+        document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+            el.innerHTML = t(el.getAttribute('data-i18n-html'));
+        });
+        // attributes: "attr:key,attr2:key2"
+        document.querySelectorAll('[data-i18n-attr]').forEach(function(el) {
+            el.getAttribute('data-i18n-attr').split(',').forEach(function(pair) {
+                var parts = pair.split(':');
+                if (parts.length === 2) el.setAttribute(parts[0].trim(), t(parts[1].trim()));
+            });
+        });
+
+        // update language buttons
+        document.querySelectorAll('#langSwitch button').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+    }
+
     (function() {
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(function(a) {
@@ -265,8 +411,8 @@
                 if (href === '#top' || href === '#') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    var t = document.querySelector(href);
-                    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    var tgt = document.querySelector(href);
+                    if (tgt) tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
@@ -293,6 +439,12 @@
             });
         });
 
+        // Language switch
+        document.querySelectorAll('#langSwitch button').forEach(function(b) {
+            b.addEventListener('click', function() { applyLang(this.getAttribute('data-lang')); });
+        });
+        applyLang(currentLang);
+
         // Kuvien pakkaus ennen lähetystä
         var fileInput = document.getElementById('photos');
         var fileStatus = document.getElementById('fileStatus');
@@ -310,18 +462,18 @@
                     var canvas = document.createElement('canvas');
                     canvas.width = w; canvas.height = h;
                     canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                    canvas.toBlob(function(b) { b ? resolve(b) : reject(new Error('pakkaus epäonnistui')); }, 'image/jpeg', QUALITY);
+                    canvas.toBlob(function(b) { b ? resolve(b) : reject(new Error('compress failed')); }, 'image/jpeg', QUALITY);
                     URL.revokeObjectURL(img.src);
                 };
-                img.onerror = function() { reject(new Error('kuvaa ei voitu lukea')); };
+                img.onerror = function() { reject(new Error('read failed')); };
                 img.src = URL.createObjectURL(file);
             });
         }
 
         fileInput.addEventListener('change', async function() {
             var files = Array.from(this.files).slice(0, MAX_FILES);
-            if (files.length === 0) { fileStatus.textContent = ''; fileLabelText.textContent = 'Lisää kuvia ajoneuvosta (max 3)'; return; }
-            fileStatus.textContent = 'Pakataan kuvia...';
+            if (files.length === 0) { fileStatus.textContent = ''; fileLabelText.textContent = t('form.addPhotos'); return; }
+            fileStatus.textContent = t('form.compressing');
             var out = [];
             for (var i = 0; i < files.length; i++) {
                 var f = files[i];
@@ -334,20 +486,20 @@
             var dt = new DataTransfer();
             out.forEach(function(f) { dt.items.add(f); });
             fileInput.files = dt.files;
-            var totalKB = out.reduce(function(s, f) { return s + f.size; }, 0) / 1024;
-            fileLabelText.textContent = out.length + ' kuva' + (out.length === 1 ? '' : 'a') + ' valittu';
-            fileStatus.textContent = 'Valmiina lähetettäväksi (' + Math.round(totalKB) + ' KB yhteensä)';
+            var totalKB = Math.round(out.reduce(function(s, f) { return s + f.size; }, 0) / 1024);
+            fileLabelText.textContent = out.length + ' ' + (out.length === 1 ? t('form.photoOne') : t('form.photoMany'));
+            fileStatus.textContent = t('form.ready') + ' (' + totalKB + ' ' + t('form.totalSuffix') + ')';
         });
 
         form.addEventListener('submit', function() {
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Lähetetään...';
+            submitBtn.textContent = t('form.sending');
         });
 
         // Näytä kiitosviesti lähetyksen jälkeen (?sent=1)
         if (new URLSearchParams(window.location.search).get('sent') === '1') {
             var card = document.querySelector('.form-card');
-            if (card) card.innerHTML = '<h3>Kiitos yhteydenotostasi!</h3><p style="color:var(--gray-300);margin-top:12px;">Olemme sinuun yhteydessä pian.</p>';
+            if (card) card.innerHTML = '<h3>' + t('form.thanksTitle') + '</h3><p style="color:var(--gray-300);margin-top:12px;">' + t('form.thanksBody') + '</p>';
         }
 
         // Scroll reveal
