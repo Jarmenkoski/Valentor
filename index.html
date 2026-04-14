@@ -445,55 +445,98 @@
         });
         applyLang(currentLang);
 
-        // Kuvien pakkaus ennen lähetystä
+        // Kuvien pakkaus + yhdistäminen yhdeksi liitteeksi
+        // (FormSubmit.co ilmaisversio hyväksyy vain yhden attachment-tiedoston)
         var fileInput = document.getElementById('photos');
         var fileStatus = document.getElementById('fileStatus');
         var fileLabelText = document.getElementById('fileLabelText');
         var submitBtn = document.getElementById('submitBtn');
         var form = document.getElementById('contactForm');
         var MAX_FILES = 3, MAX_DIM = 1600, QUALITY = 0.75;
+        var pendingFiles = [];
+        var processed = false;
 
-        function compressImage(file) {
+        function loadImage(file) {
             return new Promise(function(resolve, reject) {
                 var img = new Image();
-                img.onload = function() {
-                    var scale = Math.min(1, MAX_DIM / Math.max(img.width, img.height));
-                    var w = Math.round(img.width * scale), h = Math.round(img.height * scale);
-                    var canvas = document.createElement('canvas');
-                    canvas.width = w; canvas.height = h;
-                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                    canvas.toBlob(function(b) { b ? resolve(b) : reject(new Error('compress failed')); }, 'image/jpeg', QUALITY);
-                    URL.revokeObjectURL(img.src);
-                };
-                img.onerror = function() { reject(new Error('read failed')); };
+                img.onload = function() { resolve(img); };
+                img.onerror = function() { reject(new Error('kuvaa ei voitu lukea')); };
                 img.src = URL.createObjectURL(file);
             });
         }
 
-        fileInput.addEventListener('change', async function() {
-            var files = Array.from(this.files).slice(0, MAX_FILES);
-            if (files.length === 0) { fileStatus.textContent = ''; fileLabelText.textContent = t('form.addPhotos'); return; }
-            fileStatus.textContent = t('form.compressing');
-            var out = [];
-            for (var i = 0; i < files.length; i++) {
-                var f = files[i];
-                if (!f.type.startsWith('image/')) { out.push(f); continue; }
-                try {
-                    var blob = await compressImage(f);
-                    out.push(new File([blob], f.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }));
-                } catch (e) { out.push(f); }
+        function buildCombinedBlob(imgs) {
+            var canvas = document.createElement('canvas');
+            var ctx;
+            if (imgs.length === 1) {
+                var img = imgs[0];
+                var scale = Math.min(1, MAX_DIM / Math.max(img.width, img.height));
+                canvas.width = Math.round(img.width * scale);
+                canvas.height = Math.round(img.height * scale);
+                ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            } else {
+                var targetW = 1200;
+                var heights = imgs.map(function(im) { return Math.round(targetW * (im.height / im.width)); });
+                var totalH = heights.reduce(function(a, b) { return a + b; }, 0);
+                canvas.width = targetW;
+                canvas.height = totalH;
+                ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                var y = 0;
+                imgs.forEach(function(im, i) {
+                    ctx.drawImage(im, 0, y, targetW, heights[i]);
+                    y += heights[i];
+                });
             }
-            var dt = new DataTransfer();
-            out.forEach(function(f) { dt.items.add(f); });
-            fileInput.files = dt.files;
-            var totalKB = Math.round(out.reduce(function(s, f) { return s + f.size; }, 0) / 1024);
-            fileLabelText.textContent = out.length + ' ' + (out.length === 1 ? t('form.photoOne') : t('form.photoMany'));
-            fileStatus.textContent = t('form.ready') + ' (' + totalKB + ' ' + t('form.totalSuffix') + ')';
+            return new Promise(function(resolve, reject) {
+                canvas.toBlob(function(b) { b ? resolve(b) : reject(new Error('pakkaus epäonnistui')); }, 'image/jpeg', QUALITY);
+            });
+        }
+
+        fileInput.addEventListener('change', function() {
+            processed = false;
+            pendingFiles = Array.from(this.files).slice(0, MAX_FILES);
+            if (pendingFiles.length === 0) {
+                fileLabelText.textContent = t('form.addPhotos');
+                fileStatus.textContent = '';
+            } else {
+                fileLabelText.textContent = pendingFiles.length + ' ' + (pendingFiles.length === 1 ? t('form.photoOne') : t('form.photoMany'));
+                fileStatus.textContent = '';
+            }
         });
 
-        form.addEventListener('submit', function() {
+        form.addEventListener('submit', async function(e) {
+            if (processed || pendingFiles.length === 0) {
+                // ei kuvia tai jo käsitelty — anna normaalin submitin jatkua
+                submitBtn.disabled = true;
+                submitBtn.textContent = t('form.sending');
+                return;
+            }
+            e.preventDefault();
             submitBtn.disabled = true;
             submitBtn.textContent = t('form.sending');
+            fileStatus.textContent = t('form.compressing');
+            try {
+                var imgs = await Promise.all(pendingFiles.filter(function(f) { return f.type.startsWith('image/'); }).map(loadImage));
+                if (imgs.length === 0) { throw new Error('ei kelvollisia kuvia'); }
+                var blob = await buildCombinedBlob(imgs);
+                var combined = new File([blob], 'ajoneuvo.jpg', { type: 'image/jpeg' });
+                var dt = new DataTransfer();
+                dt.items.add(combined);
+                fileInput.files = dt.files;
+                var totalKB = Math.round(combined.size / 1024);
+                fileStatus.textContent = t('form.ready') + ' (' + totalKB + ' ' + t('form.totalSuffix') + ')';
+                processed = true;
+                form.submit();
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = t('form.send');
+                fileStatus.textContent = 'Virhe: ' + err.message;
+            }
         });
 
         // Näytä kiitosviesti lähetyksen jälkeen (?sent=1)
