@@ -203,10 +203,11 @@
                 <div class="contact-right">
                     <div class="form-card">
                         <h3>Lähetä tiedot:</h3>
-                        <form class="form" action="https://formsubmit.co/info@valentor.fi" method="POST">
+                        <form class="form" id="contactForm" action="https://formsubmit.co/info@valentor.fi" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_subject" value="Uusi yhteydenotto – valentor.fi">
                             <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="https://valentor.fi">
+                            <input type="hidden" name="_next" value="https://valentor.fi/?sent=1">
+                            <input type="hidden" name="_template" value="table">
                             <input type="text" name="name" placeholder="Nimi" required>
                             <input type="tel" name="phone" placeholder="Puhelin" required>
                             <input type="email" name="email" placeholder="Sähköposti">
@@ -215,7 +216,13 @@
                             <input type="text" name="year" placeholder="Vuosimalli">
                             <input type="text" name="condition" placeholder="Viat / Kunto">
                             <textarea name="details" rows="3" placeholder="Lisätiedot, vapaa hintanäkemys..."></textarea>
-                            <button type="submit" class="btn btn-submit">Lähetä</button>
+                            <label class="file-label" for="photos">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                <span id="fileLabelText">Lisää kuvia ajoneuvosta (max 3)</span>
+                            </label>
+                            <input type="file" id="photos" name="attachment" accept="image/*" multiple hidden>
+                            <p class="file-status" id="fileStatus" aria-live="polite"></p>
+                            <button type="submit" class="btn btn-submit" id="submitBtn">Lähetä</button>
                         </form>
                     </div>
                 </div>
@@ -285,6 +292,63 @@
                 toggle.classList.remove('active');
             });
         });
+
+        // Kuvien pakkaus ennen lähetystä
+        var fileInput = document.getElementById('photos');
+        var fileStatus = document.getElementById('fileStatus');
+        var fileLabelText = document.getElementById('fileLabelText');
+        var submitBtn = document.getElementById('submitBtn');
+        var form = document.getElementById('contactForm');
+        var MAX_FILES = 3, MAX_DIM = 1600, QUALITY = 0.75;
+
+        function compressImage(file) {
+            return new Promise(function(resolve, reject) {
+                var img = new Image();
+                img.onload = function() {
+                    var scale = Math.min(1, MAX_DIM / Math.max(img.width, img.height));
+                    var w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+                    var canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    canvas.toBlob(function(b) { b ? resolve(b) : reject(new Error('pakkaus epäonnistui')); }, 'image/jpeg', QUALITY);
+                    URL.revokeObjectURL(img.src);
+                };
+                img.onerror = function() { reject(new Error('kuvaa ei voitu lukea')); };
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        fileInput.addEventListener('change', async function() {
+            var files = Array.from(this.files).slice(0, MAX_FILES);
+            if (files.length === 0) { fileStatus.textContent = ''; fileLabelText.textContent = 'Lisää kuvia ajoneuvosta (max 3)'; return; }
+            fileStatus.textContent = 'Pakataan kuvia...';
+            var out = [];
+            for (var i = 0; i < files.length; i++) {
+                var f = files[i];
+                if (!f.type.startsWith('image/')) { out.push(f); continue; }
+                try {
+                    var blob = await compressImage(f);
+                    out.push(new File([blob], f.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }));
+                } catch (e) { out.push(f); }
+            }
+            var dt = new DataTransfer();
+            out.forEach(function(f) { dt.items.add(f); });
+            fileInput.files = dt.files;
+            var totalKB = out.reduce(function(s, f) { return s + f.size; }, 0) / 1024;
+            fileLabelText.textContent = out.length + ' kuva' + (out.length === 1 ? '' : 'a') + ' valittu';
+            fileStatus.textContent = 'Valmiina lähetettäväksi (' + Math.round(totalKB) + ' KB yhteensä)';
+        });
+
+        form.addEventListener('submit', function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Lähetetään...';
+        });
+
+        // Näytä kiitosviesti lähetyksen jälkeen (?sent=1)
+        if (new URLSearchParams(window.location.search).get('sent') === '1') {
+            var card = document.querySelector('.form-card');
+            if (card) card.innerHTML = '<h3>Kiitos yhteydenotostasi!</h3><p style="color:var(--gray-300);margin-top:12px;">Olemme sinuun yhteydessä pian.</p>';
+        }
 
         // Scroll reveal
         var reveals = document.querySelectorAll('.buy-item, .step-card, .contact-left, .contact-right');
